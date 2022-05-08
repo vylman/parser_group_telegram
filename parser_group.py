@@ -20,7 +20,7 @@ class ParserTelegram(object):
             self.client.sign_in(phone, input('Enter code:'))
 
     def __set_array(self):
-        self.__participants = set(self.__participants)
+        self.__participants = list(set(self.__participants))
 
     @property
     def participants(self):
