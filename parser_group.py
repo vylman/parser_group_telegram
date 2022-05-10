@@ -30,7 +30,7 @@ class ParserTelegram(object):
     def __parse_admins(self):
 
         for n, user in enumerate(self.client.iter_participants(self.group_name, filter=ChannelParticipantsAdmins), 1):
-            self.append(f'{user.id};{user.first_name};{user.last_name};{user.username};admin')
+            self.__participants.append(f'{user.id};{user.first_name};{user.last_name};{user.username};admin')
 
     def __parse_users_by_character(self, *, character: str = 'a') -> bool:
         offset = 0
@@ -63,7 +63,7 @@ class ParserTelegram(object):
             self.__set_array()
             time.sleep(5)
         self.__parse_admins()
-        with open(self.outputFile,'w') as file:
+        with open(self.outputFile,'w', encoding="utf-8") as file:
             file.writelines(self.participants)
 
 
